@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import {React} from 'react';
 import {Link} from "react-router-dom";
 import './YearSelectedCard.scss'
 export const YearSelectedCard = ({teamName}) => {
@@ -12,8 +12,7 @@ export const YearSelectedCard = ({teamName}) => {
     }
     return(
         <ol className="YearSelectedCard">
-            {years.map(year => <li><Link to={`/team/${teamName}/matches/${year}`}>{year}</Link></li>)}
-
+            {years.map(year => <li key={year}><Link  to={`/team/${teamName}/matches/${year}`}>{year}</Link></li>)}
         </ol>
     );
 }

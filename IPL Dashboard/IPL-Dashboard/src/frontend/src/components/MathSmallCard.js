@@ -1,6 +1,5 @@
 import {React} from 'react';
 import { Link } from "react-router-dom";
-import {MatchDetailCard} from "./MatchDetailCard";
 import './MatchSmallCard.scss'
 export const MathSmallCard = ({teamName, match}) => {
     const otherTeam = match.team1 === teamName ? match.team2 : match.team1;
