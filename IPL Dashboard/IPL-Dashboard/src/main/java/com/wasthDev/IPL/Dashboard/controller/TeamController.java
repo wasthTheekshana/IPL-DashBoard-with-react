@@ -1,12 +1,13 @@
 package com.wasthDev.IPL.Dashboard.controller;
 
+import com.wasthDev.IPL.Dashboard.model.Matchs;
 import com.wasthDev.IPL.Dashboard.model.Team;
 import com.wasthDev.IPL.Dashboard.repositry.MatchRepository;
 import com.wasthDev.IPL.Dashboard.repositry.TeamRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -26,5 +27,16 @@ public class TeamController {
      Team team =  this.teamRepository.findByTeamName(teamname);
     team.setMatches(this.matchRepository.findLatestMatchesByTeam(teamname,4));
      return team;
+    }
+
+    @GetMapping("/team/{teamname}/matches")
+    public List<Matchs> getMatchesForTeam(@PathVariable String teamname , @RequestParam int year){
+        LocalDate startDate = LocalDate.of(year,1,1);
+        LocalDate endDate = LocalDate.of(year+1,1,1);
+       return this.matchRepository.getMatchsByTeamBetweenDates(
+                teamname,
+               startDate,
+               endDate
+        );
     }
 }

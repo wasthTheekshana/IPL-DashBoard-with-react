@@ -14,7 +14,7 @@ function App() {
                <Routes>
                    <Route path="/team/:teamName/matches/:year" element={<MatchPage/>}/>
                </Routes>
-              
+
            </Router>
 
         </div>
